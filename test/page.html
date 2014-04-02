@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page</title>
+
+	<style type="text/css">
+
+	.main{
+		background-color: red;
+		padding: 50px;
+		
+	}
+	.video{
+		height: 280px;
+		width:520px;
+		overflow: hidden;
+		background-color: green;
+	}
+	#img{
+		opacity: 0;
+		padding-top:200px;
+		-webkit-transition: all 0.5s;
+	}
+	#img.opa{
+		opacity: 1;
+		padding-top:0px;
+	}
+	</style>
+</head>
+<body>
+	<div class="main">
+	seeff
+		<div class="video" id="capture">
+			<img id="img">
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var imgs = [{src:"http://gtms04.alicdn.com/tps/i4/T1uXnmFAJdXXazuKP7-520-280.jpg"},{src: "http://i.mmcdn.cn/simba/img/T1Aq1eFyteXXb1upjX.jpg" }, {src:"http://i.mmcdn.cn/simba/img/T1XxrlFvNdXXb1upjX.jpg"},{src:"http://gtms02.alicdn.com/tps/i2/T1SwrLFEpbXXazuKP7-520-280.jpg"}];
+
+		var count = 0;
+		var maxCount = imgs.length;
+		var imgDom = document.getElementById("img");
+
+
+
+		for(var i=0;i<maxCount;i++){
+			var img = new Image();
+			img.onload = function(){
+				count ++;
+				if(count == imgs.length){
+					captureStart();
+				}
+			}
+			img.src = imgs[i].src;
+		}
+
+		function captureStart(){
+
+			count = 0;
+			capture()
+			send("captureStart");
+
+		};
+		function capture() {
+			if(count >= maxCount){
+				captureEnd();
+				return;
+			}
+
+			imgDom.src = imgs[count].src;
+			if(imgDom.className){
+				imgDom.className = "";
+			}else{
+				imgDom.className = "opa";
+			}
+			
+			
+			setTimeout(function(){
+				count ++ ;
+				capture();
+			},500);
+		}
+		function captureEnd(){
+			send("captureEnd")
+		}
+		function send(action){
+			console.log(action)
+			if (typeof window.callPhantom === 'function') {
+			  window.callPhantom({ 'action': action });
+			}
+		}
+		
+	</script>
+</body>
+</html>
