@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # page to video
 
 基于 [casperjs](http://casperjs.org)、[fluent-ffmpeg](https://github.com/schaermu/node-fluent-ffmpeg)，把页面生成视频功能
@@ -32,3 +33,9 @@ p2v.start(function(videoPath){
 
 });
 ```
+=======
+page2video
+==========
+
+page to video
+>>>>>>> 68de046a79c1ddec310e2dd7938f4210fb1df478
