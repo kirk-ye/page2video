@@ -11,6 +11,7 @@
     "video"
   ],
   "author": "cricy",
+  "repository": "git@github.com:cricy/page2video.git",
   "license": "MIT",
 
   "devDependencies": {
