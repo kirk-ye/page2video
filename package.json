@@ -18,5 +18,10 @@
     "rimraf": "2.2.6",
     "casperjs": "1.1.0-beta3",
     "fluent-ffmpeg": "1.6.0"
+  },
+  "dependencies": {
+    "rimraf": "2.2.6",
+    "casperjs": "1.1.0-beta3",
+    "fluent-ffmpeg": "1.6.0"
   }
 }

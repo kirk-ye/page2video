@@ -6,7 +6,7 @@ p2v.on("paged", function(dir) {
 	console.log(dir);
 })
 
-p2v.on("videoed", function() {
-	console.log("vvvvvv");
+p2v.on("video", function(videoPath) {
+	console.log(videoPath);
 })
 p2v.start();
