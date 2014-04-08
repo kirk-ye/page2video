@@ -95,5 +95,5 @@ module.exports = P2V;
 // =========helpers ========
 
 function getCasperCommand() {
-    return "casperjs"
+    return __dirname + "/node_module/.bin/casperjs"
 }
