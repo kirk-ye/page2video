@@ -1,6 +1,6 @@
 {
   "name": "page2video",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "build pages to video ",
   "main": "index.js",
   "scripts": {
@@ -13,15 +13,10 @@
   "author": "cricy",
   "repository": "git@github.com:cricy/page2video.git",
   "license": "MIT",
-
-  "devDependencies": {
-    "rimraf": "2.2.6",
-    "casperjs": "1.1.0-beta3",
-    "fluent-ffmpeg": "1.6.0"
-  },
   "dependencies": {
     "rimraf": "2.2.6",
     "casperjs": "1.1.0-beta3",
-    "fluent-ffmpeg": "1.6.0"
+    "fluent-ffmpeg": "1.6.0",
+    "debug": "*"
   }
 }

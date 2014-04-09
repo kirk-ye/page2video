@@ -3,7 +3,7 @@ var FFmpeg = require('fluent-ffmpeg');
 var util = require("util"),
     EventEmitter = require('events').EventEmitter;
 var rimraf = require('rimraf');
-
+var debug = require("debug")("page2video");
 
 function P2V(url, selector, options) {
 
@@ -36,15 +36,17 @@ P2V.prototype.callPage = function() {
 
     child.stdout.setEncoding('utf8');
     child.stdout.on("data", function(data) {
+        debug(data);
         if (data.indexOf("dir=") > -1) {
             this.tmpDir = data.substr(4).replace(/\s+$/, "");
+            debug("tmpDir:" + this.tmpDir);
             this.emit("paged", this.tmpDir);
             this.buildVideo();
         }
     }.bind(this));
     child.stderr.setEncoding('utf8');
     child.stderr.on("data", function(data) {
-        console.error('child process errors: ' + code);
+        console.error('child process errors: ' + data);
     })
     child.on('exit', function(code) {
         this._child = null;
@@ -59,16 +61,18 @@ P2V.prototype.buildVideo = function() {
     var patternCommand = FFmpeg({
         source: tmpDir + '/img%04d.jpg'
     }).addOption("-r", this.options.fps).withVideoCodec('libx264').saveToFile(videoPath);
+    debug("save video:" + videoPath);
     this.emit("video", videoPath);
-    this.destroy();
 };
 
 P2V.prototype.destroy = function() {
-    rimraf(this.tmpDir);
+    rimraf(this.tmpDir, function(){
+        debug("deleted tmpDir:" + this.tmpDir);
+    });
 };
 
 P2V.prototype.getArgs = function getArgs() {
-    var args = ["lib/cli.js"];
+    var args = [__dirname + "/lib/cli.js"];
 
     args.push("--url=" + this.url);
     if (this.selector) {
@@ -95,5 +99,5 @@ module.exports = P2V;
 // =========helpers ========
 
 function getCasperCommand() {
-    return __dirname + "/node_module/.bin/casperjs"
+    return __dirname + "/node_modules/.bin/casperjs"
 }
