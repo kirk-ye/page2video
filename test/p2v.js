@@ -1,7 +1,11 @@
+if(typeof describe != 'undefined'){
+	return;
+}
+
 var P2V = require('../index.js');
 
 
-var p2v = new P2V("http://localhost:800/devel/page2video/test/page.html", "#capture");
+var p2v = new P2V("http://cricy.github.io/page2video/test/page.html", "#capture");
 p2v.on("paged", function(dir) {
 	console.log(dir);
 })

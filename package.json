@@ -3,9 +3,6 @@
   "version": "0.0.4",
   "description": "build pages to video ",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "pages",
     "video"
@@ -18,5 +15,11 @@
     "casperjs": "1.1.0-beta3",
     "fluent-ffmpeg": "1.6.0",
     "debug": "*"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
