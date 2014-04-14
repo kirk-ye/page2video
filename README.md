@@ -34,3 +34,18 @@ p2v.start(function(videoPath){
 });
 ```
 
+## page页面
+
+需要设置开始截屏与结束截屏
+
+```
+send("captureStart");
+
+send("captureEnd");
+
+function send(action){
+  if (typeof window.callPhantom === 'function') {
+    window.callPhantom({ 'action': action });
+  }
+}
+```
