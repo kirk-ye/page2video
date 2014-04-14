@@ -1,6 +1,8 @@
 
 # page to video
 
+[![Build Status](https://api.travis-ci.org/cricy/page2video.png?branch=master)](http://travis-ci.org/cricy/page2video)
+
 基于 [casperjs](http://casperjs.org)、[fluent-ffmpeg](https://github.com/schaermu/node-fluent-ffmpeg)，把页面生成视频功能
 
 ## 原理
