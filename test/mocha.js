@@ -24,20 +24,21 @@ describe('pages2video ', function(){
 			console.log(videoPath);
 			setTimeout(function(){
 				assert(fs.statSync(videoPath).isFile())
-				done();
+				destroy();
 			}, 500)
 		})
 
 		p2v.start();
+
+		function destroy(){
+			p2v.destroy();
+			setTimeout(function(){
+				assert.notEqual(fs.existsSync(p2v.tmpDir))
+				done();
+			}, 500)
+		}
 		
 	});
 
 
-	it("destroy dir", function(done){
-		p2v.destroy();
-		setTimeout(function(){
-			assert.notEqual(fs.existsSync(p2v.tmpDir))
-			done();
-		}, 500)
-	})
 })
