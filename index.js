@@ -75,7 +75,8 @@ P2V.prototype.buildVideo = function() {
 };
 
 P2V.prototype.destroy = function() {
-    rimraf(this.tmpDir, function(){
+    var tmpDir = this.tmpDir;
+    rimraf(tmpDir, function(){
         debug("deleted tmpDir:" + this.tmpDir);
     });
 };

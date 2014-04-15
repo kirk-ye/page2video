@@ -24,7 +24,8 @@ describe('pages2video ', function(){
 			console.log(videoPath);
 			setTimeout(function(){
 				assert(fs.statSync(videoPath).isFile())
-				destroy();
+				// destroy();
+				done();
 			}, 500)
 		})
 
