@@ -20,6 +20,6 @@
     "mocha": "*"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "DEBUG=page2video mocha"
   }
 }

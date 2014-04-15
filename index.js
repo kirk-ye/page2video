@@ -30,7 +30,16 @@ P2V.prototype.start = function(cb) {
     this.callPage();
 }
 
-P2V.prototype.callPage = function() {
+P2V.prototype.callPage = function(){
+    try{
+        this.spawn()
+    }catch(err){
+        debug(err);
+        throw err;
+    }
+}
+
+P2V.prototype.spawn = function() {
 
     var child = this._child = child_process.spawn(getCasperCommand(), this.getArgs());
 
@@ -46,11 +55,11 @@ P2V.prototype.callPage = function() {
     }.bind(this));
     child.stderr.setEncoding('utf8');
     child.stderr.on("data", function(data) {
-        console.error('child process errors: ' + data);
+        debug('child process errors: ' + data);
     })
     child.on('exit', function(code) {
         this._child = null;
-        console.log('child process exited with code ' + code);
+        debug('child process exited with code ' + code);
     }.bind(this));
 };
 
