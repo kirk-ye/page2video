@@ -57,6 +57,12 @@ P2V.prototype.spawn = function() {
     child.stderr.on("data", function(data) {
         debug('child process errors: ' + data);
     })
+    child.on('error', function(err){
+         debug('child process error: ' + err);
+    })
+    child.on('close', function(code){
+         debug('child process close width code: ' + code);
+    })
     child.on('exit', function(code) {
         this._child = null;
         debug('child process exited with code ' + code);
