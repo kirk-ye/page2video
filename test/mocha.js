@@ -18,7 +18,7 @@ describe('pages2video ', function(){
 		p2v.on("paged", function(dir) {
 			console.log(dir);
 			assert(fs.statSync(dir + '/img0001.jpg').isFile())
-			done();
+			// done();
 		})
 
 		p2v.on("video", function(videoPath) {
@@ -27,7 +27,7 @@ describe('pages2video ', function(){
 				var video = fs.statSync(videoPath).isFile();
 				console.log("video exists: " + video);
 				assert(video)
-				// destroy();
+				destroy();
 				
 			}, 500)
 		})
