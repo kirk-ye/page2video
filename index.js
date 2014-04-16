@@ -49,8 +49,12 @@ P2V.prototype.spawn = function() {
         if (data.indexOf("dir=") > -1) {
             this.tmpDir = data.substr(4).replace(/\s+$/, "");
             debug("tmpDir:" + this.tmpDir);
-            this.emit("paged", this.tmpDir);
-            // this.buildVideo();
+            
+            setTimeout(function(){
+                this.emit("paged", this.tmpDir);
+                this.buildVideo();
+            }.bind(this),0);
+            
         }
     }.bind(this));
     child.stderr.setEncoding('utf8');
