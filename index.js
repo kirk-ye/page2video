@@ -52,7 +52,7 @@ P2V.prototype.spawn = function() {
             
             setTimeout(function(){
                 this.emit("paged", this.tmpDir);
-                this.buildVideo();
+                // this.buildVideo();
             }.bind(this),0);
             
         }
