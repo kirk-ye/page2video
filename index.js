@@ -35,7 +35,7 @@ P2V.prototype.callPage = function(){
         this.spawn()
     }catch(err){
         debug(err);
-        throw err;
+        // throw err;
     }
 }
 
