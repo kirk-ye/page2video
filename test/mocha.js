@@ -23,7 +23,9 @@ describe('pages2video ', function(){
 		p2v.on("video", function(videoPath) {
 			console.log(videoPath);
 			setTimeout(function(){
-				assert(fs.statSync(videoPath).isFile())
+				var video = fs.statSync(videoPath).isFile();
+				console.log("video exists: " + video);
+				assert(video)
 				// destroy();
 				done();
 			}, 500)

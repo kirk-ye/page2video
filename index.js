@@ -73,9 +73,14 @@ P2V.prototype.buildVideo = function() {
     var tmpDir = this.tmpDir;
     var fps = this.options.fps;
     var videoPath = tmpDir + '/video.mp4';
-    var patternCommand = FFmpeg({
-        source: tmpDir + '/img%04d.jpg'
-    }).addOption("-r", this.options.fps).withVideoCodec('libx264').saveToFile(videoPath);
+    try {
+        FFmpeg({
+            source: tmpDir + '/img%04d.jpg'
+        }).addOption("-r", this.options.fps).withVideoCodec('libx264').saveToFile(videoPath);
+    }catch(err){
+        debug("save video error:" + err);
+    }
+    
     debug("save video:" + videoPath);
     this.emit("video", videoPath);
 };
