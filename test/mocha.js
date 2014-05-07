@@ -9,7 +9,7 @@ var assert = require('assert')
 
 describe('pages2video ', function(){
 
-	var p2v = new P2V(url, selector);
+	var p2v = new P2V(url, selector, {fps : 30});
 
 	it("to video", function(done) {
 

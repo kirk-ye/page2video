@@ -114,8 +114,8 @@ P2V.prototype.getArgs = function getArgs() {
         args.push("--selector=" + this.selector);
     }
 
-    if (this.options.tfs) {
-        args.push("--tfs=" + this.options.tfs);
+    if (this.options.fps) {
+        args.push("--fps=" + this.options.fps);
     }
     if (this.options.timeout) {
         args.push("--timeout=" + this.options.timeout);
