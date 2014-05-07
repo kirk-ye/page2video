@@ -80,20 +80,29 @@ P2V.prototype.buildVideo = function() {
     try {
         FFmpeg({
             source: tmpDir + '/img%04d.jpg'
-        }).addOption("-r", this.options.fps).withVideoCodec('libx264').saveToFile(videoPath);
+        })
+        .addOption("-r", this.options.fps)
+        .withVideoCodec('libx264')
+        .on("end", function(){
+            debug("save video:" + videoPath);
+            this.emit("video", videoPath);
+        }.bind(this))
+        .on("error", function(err){
+            debug("save video error:" + err.message);
+        })
+        .saveToFile(videoPath);
     }catch(err){
         debug("save video error:" + err);
     }
     
-    debug("save video:" + videoPath);
-    this.emit("video", videoPath);
 };
 
 P2V.prototype.destroy = function() {
     var tmpDir = this.tmpDir;
     rimraf(tmpDir, function(){
         debug("deleted tmpDir:" + this.tmpDir);
-    });
+        this.emit("deleted");
+    }.bind(this));
 };
 
 P2V.prototype.getArgs = function getArgs() {

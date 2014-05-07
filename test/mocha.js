@@ -18,30 +18,23 @@ describe('pages2video ', function(){
 		p2v.on("paged", function(dir) {
 			console.log(dir);
 			assert(fs.statSync(dir + '/img0001.jpg').isFile())
-			// done();
 		})
 
 		p2v.on("video", function(videoPath) {
 			console.log(videoPath);
-			setTimeout(function(){
-				var video = fs.statSync(videoPath).isFile();
-				console.log("video exists: " + video);
-				assert(video)
-				destroy();
+			var video = fs.statSync(videoPath).isFile();
+			console.log("video exists: " + video);
+			assert(video)
+			p2v.destroy();
 				
-			}, 500)
+		})
+		p2v.on("deleted", function(){
+			assert.notEqual(fs.existsSync(p2v.tmpDir))
+			done();
 		})
 
 		p2v.start();
 
-		function destroy(){
-			p2v.destroy();
-			setTimeout(function(){
-				assert.notEqual(fs.existsSync(p2v.tmpDir))
-				done();
-			}, 500)
-		}
-		
 	});
 
 
