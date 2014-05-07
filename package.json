@@ -1,6 +1,6 @@
 {
   "name": "page2video",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "build pages to video ",
   "main": "index.js",
   "keywords": [
@@ -13,7 +13,7 @@
   "dependencies": {
     "rimraf": "2.2.6",
     "casperjs": "1.1.0-beta3",
-    "fluent-ffmpeg": "1.6.0",
+    "fluent-ffmpeg": "1.7.1",
     "debug": "*"
   },
   "devDependencies": {
