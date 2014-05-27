@@ -82,6 +82,7 @@ P2V.prototype.buildVideo = function() {
             source: tmpDir + '/img%04d.jpg'
         });
         ff.addOption("-r", this.options.fps)
+        .addOption("-vf", "scale=trunc(iw/2)*2:trunc(ih/2)*2")
         .withVideoCodec('libx264')
         .on("end", function(){
             debug("save video:" + videoPath);
